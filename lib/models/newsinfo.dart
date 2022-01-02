@@ -9,11 +9,10 @@ NewsModel welcomeFromJson(String str) => NewsModel.fromJson(json.decode(str));
 String welcomeToJson(NewsModel data) => json.encode(data.toJson());
 
 class NewsModel {
-    NewsModel(
-      {
+    NewsModel({
         required this.status,
-        required this.totalResults,
-        required this.articles,
+       required this.totalResults,
+       required this.articles,
     });
 
     String status;
@@ -35,14 +34,14 @@ class NewsModel {
 
 class Article {
     Article({
-        required this.source,
-        required this.author,
-        required this.title,
-        required this.description,
-        required this.url,
-        required this.urlToImage,
-        required this.publishedAt,
-        required this.content,
+      required  this.source,
+      required  this.author,
+       required this.title,
+      required  this.description,
+      required  this.url,
+      required  this.urlToImage,
+      required  this.publishedAt,
+      required  this.content,
     });
 
     Source source;
@@ -56,20 +55,20 @@ class Article {
 
     factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
-        author: json["author"] == null ? null : json["author"],
+        author: json["author"]??"",
         title: json["title"],
-        description: json["description"],
+        description: json["description"]??"",
         url: json["url"],
-        urlToImage: json["urlToImage"] == null ? null : json["urlToImage"],
+        urlToImage: json["urlToImage"]??"",
         publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"] == null ? null : json["content"],
+        content: json["content"]??"",
     );
 
     Map<String, dynamic> toJson() => {
         "source": source.toJson(),
         "author": author == null ? null : author,
         "title": title,
-        "description": description,
+        "description": description == null ? null : description,
         "url": url,
         "urlToImage": urlToImage == null ? null : urlToImage,
         "publishedAt": publishedAt.toIso8601String(),
@@ -79,20 +78,20 @@ class Article {
 
 class Source {
     Source({
-        required this.id,
-        required this.name,
+      required  this.id,
+      required  this.name,
     });
 
     String id;
     String name;
 
     factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"],
+        id: json["id"]??"",
+        name: json["name"]??"",
     );
 
     Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
+        "id": id == "" ? "" : id,
         "name": name,
     };
 }
